@@ -30,6 +30,7 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build --prod",
+        "prepare": "npm run build",
         "lint": "ng lint",
         "test": "ng test --watch=false --code-coverage --browsers ChromeHeadlessNoSandbox",
         "test:watch": "ng test --watch=true --browsers ChromeHeadlessNoSandbox --code-coverage",

@@ -1,4 +1,4 @@
-import { Component, forwardRef, Inject, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, forwardRef, Inject, Input, OnDestroy, OnInit, TemplateRef, EventEmitter, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgxMaterialTimepickerService } from '../../services/ngx-material-timepicker.service';
 import { Observable, Subject } from 'rxjs';
@@ -45,6 +45,7 @@ export class NgxTimepickerFieldComponent implements OnInit, OnDestroy, ControlVa
     @Input() controlOnly: boolean;
     @Input() cancelBtnTmpl: TemplateRef<Node>;
     @Input() confirmBtnTmpl: TemplateRef<Node>;
+    @Output() outTimeChange = new EventEmitter<string>();
 
     @Input()
     set format(value: number) {
@@ -153,6 +154,7 @@ export class NgxTimepickerFieldComponent implements OnInit, OnDestroy, ControlVa
     private changeTime(): void {
         const time = this.timepickerService.getFullTime(this._format);
         this.timepickerTime = time;
+        this.outTimeChange.emit(time);
         this.onChange(time);
     }
 }
